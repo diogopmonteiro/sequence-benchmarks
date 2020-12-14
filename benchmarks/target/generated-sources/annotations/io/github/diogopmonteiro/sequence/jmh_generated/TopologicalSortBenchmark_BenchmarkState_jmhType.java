@@ -1,0 +1,4 @@
+package io.github.diogopmonteiro.sequence.jmh_generated;
+public class TopologicalSortBenchmark_BenchmarkState_jmhType extends TopologicalSortBenchmark_BenchmarkState_jmhType_B3 {
+}
+
