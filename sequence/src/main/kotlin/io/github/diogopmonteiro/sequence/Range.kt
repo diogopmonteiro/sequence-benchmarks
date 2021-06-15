@@ -10,6 +10,12 @@ object SequenceBuilder {
             }
         }
     }
+
+    fun getYieldAllPerRow(start: Position, end: Position) = sequence {
+        for (row in start.row..end.row) {
+            yieldAll((start.col..end.col).asSequence().map { Position(it, row) })
+        }
+    }
 }
 
 object SequenceFlatMap {
