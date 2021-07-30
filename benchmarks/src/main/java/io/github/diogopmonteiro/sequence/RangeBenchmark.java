@@ -19,7 +19,7 @@ public class RangeBenchmark {
     @Benchmark
     @Fork(1)
     @Warmup(iterations = 2, time = 10)
-    @Measurement(iterations = 3, time = 15)
+    @Measurement(iterations = 6, time = 15)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void benchmarkSequenceBuilder(BenchmarkState state, Blackhole b) {
@@ -34,7 +34,7 @@ public class RangeBenchmark {
     @Benchmark
     @Fork(1)
     @Warmup(iterations = 2, time = 10)
-    @Measurement(iterations = 3, time = 15)
+    @Measurement(iterations = 6, time = 15)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void benchmarkSequenceBuilderYieldAll(BenchmarkState state, Blackhole b) {
@@ -49,7 +49,7 @@ public class RangeBenchmark {
     @Benchmark
     @Fork(1)
     @Warmup(iterations = 2, time = 10)
-    @Measurement(iterations = 3, time = 15)
+    @Measurement(iterations = 6, time = 15)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void benchmarkRangeIterator(BenchmarkState state, Blackhole b) {
@@ -63,7 +63,7 @@ public class RangeBenchmark {
     @Benchmark
     @Fork(1)
     @Warmup(iterations = 2, time = 10)
-    @Measurement(iterations = 3, time = 15)
+    @Measurement(iterations = 6, time = 15)
     @BenchmarkMode(Mode.AverageTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void benchmarkFlatmap(BenchmarkState state, Blackhole b) {
@@ -73,4 +73,17 @@ public class RangeBenchmark {
             b.consume(it.next());
         }
     }
+
+    @Benchmark
+    @Fork(1)
+    @Warmup(iterations = 2, time = 10)
+    @Measurement(iterations = 6, time = 15)
+    @BenchmarkMode(Mode.AverageTime)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void benchmarkEager(BenchmarkState state, Blackhole b) {
+        for (Position position : SequenceBuilder.INSTANCE.getEager(state.start, state.end)) {
+            b.consume(position);
+        }
+    }
+
 }

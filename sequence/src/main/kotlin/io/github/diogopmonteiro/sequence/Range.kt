@@ -16,6 +16,16 @@ object SequenceBuilder {
             yieldAll((start.col..end.col).asSequence().map { Position(it, row) })
         }
     }
+
+    fun getEager(start: Position, end: Position): List<Position> {
+        val result = ArrayList<Position>((end.col - start.col)*(end.row - start.row))
+        for (row in start.row..end.row) {
+            for (col in start.col..end.col) {
+                result.add(Position(col, row))
+            }
+        }
+        return result
+    }
 }
 
 object SequenceFlatMap {
